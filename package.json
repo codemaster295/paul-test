@@ -1,0 +1,22 @@
+{
+  "name": "content-publisher-app",
+  "version": "1.0.0",
+  "description": "A content publisher app with authentication and CRUD operations",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "prod": "concurrently \"npm run server:prod\" \"npm run client:prod\"",
+    "server:prod": "cd backend && npm run start",
+    "client:prod": "cd frontend && npm run start",
+    "build": "cd frontend && npm run build",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": ["content", "publisher", "react", "nodejs", "typescript"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
