@@ -14,10 +14,19 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(helmet());
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? ['https://paul-test-fe.onrender.com', 'https://paul-test-seven.vercel.app']
+  : ['http://localhost:3000'];
+
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['*','https://paul-test-fe.onrender.com/api', 'https://paul-test-seven.vercel.app/']
-    : ['http://localhost:3000'],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
