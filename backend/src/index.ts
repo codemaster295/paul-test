@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.com'] 
+    ? ['https://paul-test-fe.onrender.com/api']
     : ['http://localhost:3000'],
   credentials: true
 }));
